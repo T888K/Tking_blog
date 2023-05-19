@@ -1,0 +1,134 @@
+body{
+  width: 100%;
+  height: 100vh;
+
+  #app{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+main{
+  width: 1000px;
+  min-height: 600px;
+  background-color: #ffffff;
+  position: relative;
+  border-radius: 5px;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  .left{
+    img{
+      position: absolute;
+      bottom: 10px;
+      width: 470px;
+    }
+  }
+  .right{
+    margin-top: 40px;
+    padding: 40px 20px 20px 20px;
+    width: 490px;
+    transform: translateX(470px);
+
+    .title{
+      text-align: center;
+      a{
+        color: #808595;
+      }
+      a.active{
+        color: #ff9800;
+        font-size: 20px;
+      }
+    }
+
+    .login_forms{
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      margin-bottom: 30px;
+
+      input{
+        margin-bottom: 20px;
+        border: none;
+        outline: none;
+        height: 40px;
+        border-radius: 5px;
+        border-bottom: 1px solid #ececec;
+        padding-left: 20px;
+        transition: all 0.3s;
+
+        &:focus{
+          border-bottom: 1px solid #ff9800;
+        }
+      }
+
+      .code{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        input{
+          width: 55%;
+        }
+        img{
+          height: 42px;
+          border-radius: 5px;
+          cursor: pointer;
+          border: 1px solid #f0eeee;
+        }
+      }
+
+      >button{
+        height: 40px;
+        border-radius: 5px;
+        background-color: #ff9800;
+        border: none;
+        cursor: pointer;
+      }
+    }
+
+    .other_login{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+
+      >p{
+       font-size: 14px;
+       color: #808595;
+      }
+      &::before{
+        position: absolute;
+        left: 0;
+        top: 10px;
+        content: '';
+        display: block;
+        width: 180px;
+        height: 1px;
+        background-color: #808595;
+        }
+      &::after{
+        position: absolute;
+        right: 0;
+        top: 10px;
+        content: '';
+        display: block;
+        width: 180px;
+        height: 1px;
+        background-color: #808595;
+        }
+
+      >div{
+        margin-top: 20px;
+        img{
+          width: 45px;
+          margin-right: 15px;
+          &:last-child{
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

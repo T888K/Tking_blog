@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>用户登录</title>
+    {% endblock %}
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="/static/elementui/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/my/css/reset.css">
+    <link rel="stylesheet" href="/static/my/css/login.css">
+</head>
+<body>
+<div id="app">
+    <main>
+        <div class="left">
+            {% block img %}
+                 <img src="/static/my/imgs/login/undraw_online_stats_0g94.svg" alt="">
+            {% endblock %}
+        </div>
+        <div class="right">
+            <div class="title">
+                {% block main_title %}
+                    <a href="/login" class="active">登录</a> / <a href="/sign">注册</a>
+                {% endblock %}
+            </div>
+            <div class="login_forms">
+                {% csrf_token %}
+                {% block form %}
+                    <input v-model="login_form.name" ref="login_from_name" type="text" placeholder="请输入用户名">
+                    <input v-model="login_form.pwd" ref="login_from_pwd" type="password" placeholder="请输入密码">
+                    <div class="code">
+                        <input v-model="login_form.code" ref="login_from_code" type="text" placeholder="请输入验证码">
+                        <img @click="get_random_code" src="/static/my/imgs/login/code.png" alt="">
+                    </div>
+                    <button @click="login" @keydown.enter="login">登录</button>
+                {% endblock %}
+            </div>
+            <div class="other_login">
+                <p>其他登录方式</p>
+                <div>
+                    <img src="/static/my/imgs/footer/qq_icon.svg" alt="">
+                    <img src="/static/my/imgs/footer/weixin_icon.svg" alt="">
+                    <img src="/static/my/imgs/footer/gitee_icon.svg" alt="">
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="/static/axios/axios.js"></script>
+<script src="/static/vue/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="/static/elementui/index.js"></script>
+<script>
+{#  axios请求中间件  #}
+    axios.interceptors.request.use(
+        request => {
+            if (request.method === 'post') {
+                let csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value
+                request.headers['X-CSRFToken'] = csrfToken
+            }
+            return request
+        }
+    )
+
+{#  axios响应中间件  #}
+    axios.interceptors.response.use(
+        response => {
+            return response.data
+        }
+    )
+
+    new Vue({
+        el: '#app',
+        data:{
+            login_form:{
+                name: '',
+                pwd: '',
+                code: '',
+            },
+            sign_form:{
+                name: '',
+                pwd: '',
+                re_pwd: '',
+                code: '',
+            }
+        },
+        methods:{
+            login(){
+                axios.post('/api/login/', this.login_form).then(res => {
+                    if (res.code){
+                        // 错误时
+                        this.$message.error(res.msg)
+                        this.$refs[`login_form_${res.self}`].focus()
+                        return
+                    }
+                    this.$message.success(res.msg)
+                    setTimeout(() => {
+                        location.href = '/'
+                    }, 1000)
+                })
+            },
+
+            sign(){
+                axios.post('/api/sign/', this.sign_form).then(res => {
+                    if (res.code) {
+                        // 错误时
+                        this.$message.error(res.msg)
+                        this.$refs[`sign_form_${res.self}`].focus()
+                        return
+                    }
+                    this.$message.success(res.msg)
+                    setTimeout(() => {
+                        location.href = '/'
+                    }, 1000)
+                })
+            },
+
+            get_random_code(e){
+                let data = new Date().getTime()
+
+                e.target.src = '/login/random_code/?timestamp='+data
+            },
+        }
+    })
+</script>
+</body>
+</html>

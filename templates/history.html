@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load my_tag my_filter %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/my/css/history.css">
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <el-dialog
+                title="添加回忆"
+                :visible.sync="history_dialogVisible"
+                width="40%">
+            <div class="dialog_content">
+                <div>
+                    <label for="">回忆标题</label>
+                    <el-input v-model="history.title" placeholder="请输入回忆标题"></el-input>
+                </div>
+                <div>
+                    <label for="">回忆日期</label>
+                    <el-date-picker
+                            v-model="history.create_date"
+                            type="date"
+                            placeholder="选择日期">
+                    </el-date-picker>
+                </div>
+                <div>
+                    <label for="">回忆内容</label>
+                    <el-input
+                            type="textarea"
+                            :rows="4"
+                            placeholder="请输入回忆内容"
+                            resize="none"
+                            v-model="history.content">
+                    </el-input>
+                </div>
+                <div>
+                    <label for="">回忆配图</label>
+                    <textarea
+                            class="drawing"
+                            rows="8"
+                            placeholder="请输入回忆图片"
+                            @paste="paste_upload"
+                            v-model="history.drawing">
+                    </textarea>
+                </div>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="history_dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="history_dialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
+        <h2 class="title cursor" @click="history_dialogVisible = true">Tking_blog回忆录</h2>
+        <ul class="timeline-wrapper">
+            <li class="timeline-item">
+                <div class="timeline-box">
+                    <div class="out-circle">
+                        <div class="in-circle"></div>
+                    </div>
+                    <div class="long-line"></div>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-date cursor">2023年1月1日</div>
+                    <div class="timeline-title">标题</div>
+                    <ul class="timeline-desc">
+                        <li>12</li>
+                        <li>13</li>
+                    </ul>
+                    <div class="peitu">
+                        <div>
+                            <img src="/static/my/imgs/article/112233.jpg" alt="">
+                            <img src="/static/my/imgs/article/112233.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}

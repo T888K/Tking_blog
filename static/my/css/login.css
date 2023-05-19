@@ -1,0 +1,124 @@
+body {
+  width: 100%;
+  height: 100vh;
+}
+body #app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 1000px;
+  min-height: 600px;
+  background-color: #ffffff;
+  position: relative;
+  border-radius: 5px;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+main .left img {
+  position: absolute;
+  bottom: 10px;
+  width: 470px;
+}
+main .right {
+  margin-top: 40px;
+  padding: 40px 20px 20px 20px;
+  width: 490px;
+  transform: translateX(470px);
+}
+main .right .title {
+  text-align: center;
+}
+main .right .title a {
+  color: #808595;
+}
+main .right .title a.active {
+  color: #ff9800;
+  font-size: 20px;
+}
+main .right .login_forms {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+main .right .login_forms input {
+  margin-bottom: 20px;
+  border: none;
+  outline: none;
+  height: 40px;
+  border-radius: 5px;
+  border-bottom: 1px solid #ececec;
+  padding-left: 20px;
+  transition: all 0.3s;
+}
+main .right .login_forms input:focus {
+  border-bottom: 1px solid #ff9800;
+}
+main .right .login_forms .code {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+main .right .login_forms .code input {
+  width: 55%;
+}
+main .right .login_forms .code img {
+  height: 42px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #f0eeee;
+}
+main .right .login_forms > button {
+  height: 40px;
+  border-radius: 5px;
+  background-color: #ff9800;
+  border: none;
+  cursor: pointer;
+}
+main .right .other_login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+main .right .other_login > p {
+  font-size: 14px;
+  color: #808595;
+}
+main .right .other_login::before {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  content: "";
+  display: block;
+  width: 180px;
+  height: 1px;
+  background-color: #808595;
+}
+main .right .other_login::after {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  content: "";
+  display: block;
+  width: 180px;
+  height: 1px;
+  background-color: #808595;
+}
+main .right .other_login > div {
+  margin-top: 20px;
+}
+main .right .other_login > div img {
+  width: 45px;
+  margin-right: 15px;
+}
+main .right .other_login > div img:last-child {
+  margin-right: 0;
+}
+
+/*# sourceMappingURL=login.css.map */
