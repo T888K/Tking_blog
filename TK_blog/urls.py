@@ -26,13 +26,14 @@ urlpatterns = [
     path('', index.index),
     path('news/', index.news),
     path('moods/', index.moods),
-    path('moods/', index.moods),
     path('history/', index.history),
     path('login/random_code/', index.get_random_code),
+    path('login/', index.login),
     path('sign/', index.sign),
     path('logout/', index.logout),
-
     path('search/', index.search),
+    path('sites/', index.sites),
+
     # 文章详情
     re_path(r'^article/(?P<nid>\d+)/', index.article),
 

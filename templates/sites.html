@@ -1,10 +1,194 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'index.html' %}
+{% load my_filter my_tag %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/my/css/sites.css">
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <el-dialog
+                :title="site_add_edit_tag ? '标签编辑' : '标签添加'"
+                :visible.sync="site_dialogVisible"
+                :before-close="site_add_edit_tag ? site_tag_handleClose : null"
+                width="40%">
+            <div class="dialog_content">
+                <div>
+                    <label for="">标签名</label>
+                    <el-input
+                            placeholder="请输入标签名"
+                            v-model="site_title.title">
+                    </el-input>
+                </div>
+            </div>
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="site_dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="site_add_tag(site_add_edit_tag)">确 定</el-button>
+  </span>
+        </el-dialog>
+        <div class="actions">
+            {% for tag in tag_list %}
+                <div class="tag_item" @click.ctrl="site_tag_edit_show('{{ tag.nid }}', '{{ tag.title }}')"
+                     @contextmenu.ctrl.prevent="site_tag_remove($event, '{{ tag.nid }}')"
+                     @click="site_tag_tab_show('{{ tag.title }}')"
+                     :flag="site_tab_tag==='{{ tag.title }}' ? 'show' : ''">{{ tag.title }}</div>
+            {% endfor %}
+            <div class="tag_item super" @click="site_dialogVisible = true">添加新标签</div>
+        </div>
+        <div class="now_action">
+            <h2>[[ site_tab_tag ]]</h2>
+        </div>
+        <ul class="site_list">
+            <li>
+                <div class="top">
+                    <div class="content">
+                        <a class="cover cursor">
+                            <img src="https://img1.baidu.com/it/u=3663910151,94628863&fm=253&fmt=auto&app=120&f=JPEG?w=603&h=400"
+                                 alt="">
+                        </a>
+                        <div class="right">
+                            <a class="title cursor">
+                                java项目教程汇总
+                            </a>
+                            <div class="abstract">
+                                官方整理的顶级java源码教程项目
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span>java</span>
+                        <span>python</span>
+                        <span>javascript</span>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="item">
+                        <i class="fa fa-heart cursor"></i>
+                        <span>23</span>
+                    </div>
+                    <div class="item">
+                        <i class="fa fa-star cursor"></i>
+                    </div>
+                    <div class="item">
+                        <a href="" class="cursor">
+                            <i class="fa fa-share-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="top">
+                    <div class="content">
+                        <a class="cover cursor">
+                            <img src="https://files.codelife.cc/wallpaper/wallspic/20230511nf6ac4.jpeg?x-oss-process=image/resize,limit_0,m_fill,w_400,h_240/format,webp"
+                                 alt="">
+                        </a>
+                        <div class="right">
+                            <a class="title cursor">
+                                java项目教程汇总
+                            </a>
+                            <div class="abstract">
+                                官方整理的顶级java源码教程项目
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span>java</span>
+                        <span>python</span>
+                        <span>javascript</span>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="item">
+                        <i class="fa fa-heart cursor"></i>
+                        <span>23</span>
+                    </div>
+                    <div class="item">
+                        <i class="fa fa-star cursor"></i>
+                    </div>
+                    <div class="item">
+                        <a href="" class="cursor">
+                            <i class="fa fa-share-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="top">
+                    <div class="content">
+                        <a class="cover cursor">
+                            <img src="https://files.codelife.cc/wallpaper/wallspic/20230511nf6ac4.jpeg?x-oss-process=image/resize,limit_0,m_fill,w_400,h_240/format,webp"
+                                 alt="">
+                        </a>
+                        <div class="right">
+                            <a class="title cursor">
+                                java项目教程汇总
+                            </a>
+                            <div class="abstract">
+                                官方整理的顶级java源码教程项目
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span>java</span>
+                        <span>python</span>
+                        <span>javascript</span>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="item">
+                        <i class="fa fa-heart cursor"></i>
+                        <span>23</span>
+                    </div>
+                    <div class="item">
+                        <i class="fa fa-star cursor"></i>
+                    </div>
+                    <div class="item">
+                        <a href="" class="cursor">
+                            <i class="fa fa-share-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="top">
+                    <div class="content">
+                        <a class="cover cursor">
+                            <img src="https://files.codelife.cc/wallpaper/wallspic/20230511nf6ac4.jpeg?x-oss-process=image/resize,limit_0,m_fill,w_400,h_240/format,webp"
+                                 alt="">
+                        </a>
+                        <div class="right">
+                            <a class="title cursor">
+                                java项目教程汇总
+                            </a>
+                            <div class="abstract">
+                                官方整理的顶级java源码教程项目
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tags">
+                        <span>java</span>
+                        <span>python</span>
+                        <span>javascript</span>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="item">
+                        <i class="fa fa-heart cursor"></i>
+                        <span>23</span>
+                    </div>
+                    <div class="item">
+                        <i class="fa fa-star cursor"></i>
+                    </div>
+                    <div class="item">
+                        <a href="" class="cursor">
+                            <i class="fa fa-share-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+{% endblock %}
+

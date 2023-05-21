@@ -5,8 +5,10 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from app01.models import avatar_delete, cover_delete
 from django.db.models import Q
 import base64
+from api.utils.api_qiniu import upload_data
 
 
+# 头像
 class AvatarView(View):
     def post(self, request):
         res = {
@@ -52,7 +54,7 @@ class AvatarView(View):
             res['msg'] = '头像已被删除！'
             return JsonResponse(res)
 
-         # 判断图片是否使用
+        # 判断图片是否使用
         obj: Avatars = avatar_query.first()
         user_query = UserInfo.objects.filter(Q(sign_status=1) | Q(sign_status=2))
         for user in user_query:
@@ -67,6 +69,7 @@ class AvatarView(View):
         return JsonResponse(res)
 
 
+# 封面
 class CoverView(View):
     def post(self, request):
         res = {
@@ -118,12 +121,11 @@ class CoverView(View):
         return JsonResponse(res)
 
 
+# 粘贴上传
 class PasteUpload(View):
     def post(self, request):
         img = request.data.get('image')
         ines = img.split('base64,')
         imgData = base64.b64decode(ines[1])
-        fp = open('static/1.png', 'wb')
-        fp.write(imgData)
-        fp.close()
-        return JsonResponse({})
+        url = upload_data(imgData)
+        return JsonResponse({'url': url})

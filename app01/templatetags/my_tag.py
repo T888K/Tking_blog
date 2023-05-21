@@ -108,13 +108,15 @@ def generate_advert(advert_list):
     html_list = []
     for i in advert_list:
         if i.img:
-            html_list.append(f'<div><a href="{i.href}" title="{i.title}" target="_blank"><img src="{i.img.url}" alt=""></a></div>')
+            html_list.append(
+                f'<div><a href="{i.href}" title="{i.title}" target="_blank"><img src="{i.img.url}" alt=""></a></div>')
             continue
         html_s: str = i.img_list
         html_new = html_s.replace('；', ';').replace('\n', ';')
         img_list = html_new.split(';')
         for url in img_list:
-            html_list.append(f'<div><a href="{i.href}" title="{i.title}" target="_blank"><img src="{url}" alt=""></a></div>')
+            html_list.append(
+                f'<div><a href="{i.href}" title="{i.title}" target="_blank"><img src="{url}" alt=""></a></div>')
     return mark_safe(''.join(html_list))
 
 
@@ -127,8 +129,9 @@ def generate_drawing(drawing: str):
     drawing_list = drawing.split(';')
     html_s = ''
     for i in drawing_list:
-        html_s += f'<img src="{i}" alt="">'
+        html_s += f'<img @error="img_error" src="{i}" alt="">'
     return mark_safe(html_s)
+
 
 # 生成标签
 @register.simple_tag
@@ -137,8 +140,21 @@ def generate_tag_html():
     tag_html = []
     for tag in tag_list:
         if tag.articles_set.all():
-            tag_html.append(f'<li>{tag.title} <i style="display: flex;justify-content: center;align-items: center;width: 20px;height: 20px;font-size: 10px;color: #ffffff;background-color: #01b0b7 ;border-radius: 50%;margin-left: 5px;">{tag.articles_set.count()}</i></li>')
+            tag_html.append(
+                f'<li>{tag.title} <i style="display: flex;justify-content: center;align-items: center;width: 20px;height: 20px;font-size: 10px;color: #ffffff;background-color: #01b0b7 ;border-radius: 50%;margin-left: 5px;">{tag.articles_set.count()}</i></li>')
         else:
             tag_html.append(f'<li>{tag.title}</li>')
     return mark_safe(''.join(tag_html))
 
+
+@register.simple_tag
+def generate_li(content: str):
+    if not content:
+        return ''
+    content = content.replace('；', ';').replace('\n', ';')
+    content_list = content.split(';')
+    html_s = ''
+    for i in content_list:
+        html_s += f'<li>{i}</li>'
+
+    return mark_safe(html_s)

@@ -69,7 +69,13 @@ def moods(request):
 
 
 def history(request):
+    history_list = History.objects.all().order_by('-create_date')
     return render(request, 'history.html', locals())
+
+def sites(request):
+    # 取到所有的标签
+    tag_list = NavTags.objects.exclude(navs__isnull=True)
+    return render(request, 'sites.html', locals())
 
 def login(request):
     return render(request, 'login.html')

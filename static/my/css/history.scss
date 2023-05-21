@@ -1,12 +1,10 @@
 
-main {
-  .main {
-    width: 1000px;
-  }
+.main{
+  width: 1000px;
+}
 
-  .title {
-    margin-bottom: 20px;
-  }
+.title {
+  margin-bottom: 20px;
 }
 
 .dialog_content {
@@ -22,15 +20,49 @@ main {
   }
 
   textarea.drawing {
-    display: block;
     width: 95%;
     resize: none;
-    border: 1px solid #dcdfe6;
+    border: 1px solid #DCDFE6;
+    outline: none;
     border-radius: 5px;
     padding: 5px 15px;
-    color: #dcdfe6;
+    color: #606266;
     font-size: 14px;
-    outline: none;
+    transition: all 0.2s;
+
+    &::-webkit-input-placeholder {
+      color: #C0C4CC
+    }
+
+    &:-ms-input-placeholder {
+      color: #C0C4CC
+    }
+
+    &::-ms-input-placeholder {
+      color: #C0C4CC
+    }
+
+    &::placeholder {
+      color: #C0C4CC
+    }
+
+    &:hover {
+      border-color: #C0C4CC
+    }
+
+    &:focus {
+      border-color: #490eff
+    }
+  }
+
+  .drawing_show {
+    display: inherit;
+    img {
+      height: 100px;
+      border-radius: 5px;
+      margin-right: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
   }
 }
 
@@ -42,7 +74,6 @@ main {
 .cursor {
   cursor: pointer;
 }
-
 
 /* 时间线 */
 .timeline-item {
@@ -143,3 +174,4 @@ main {
   }
 
 }
+

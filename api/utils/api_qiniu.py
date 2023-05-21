@@ -31,7 +31,7 @@ def upload_file(path, key=None, prefix='blog/'):
     else:
         key = prefix + key + '.' + path.split('.')[-1]
     # 生成上传 Token，可以指定过期时间等
-    token = q.upload_token(bucket_name, key, 2)
+    token = q.upload_token(bucket_name, key, 3600)
 
     # http://python.fengfengzhidao.com/my-python-logo.png
 
@@ -54,7 +54,7 @@ def upload_data(file_data, key=None, suffix='.png', prefix='blog/'):
     else:
         key = prefix + key + suffix
     # 生成上传 Token，可以指定过期时间等
-    token = q.upload_token(bucket_name, key, 2)
+    token = q.upload_token(bucket_name, key, 3600)
 
     # http://python.fengfengzhidao.com/my-python-logo.png
 

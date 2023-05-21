@@ -1,8 +1,9 @@
 @charset "UTF-8";
-main .main {
+.main {
   width: 1000px;
 }
-main .title {
+
+.title {
   margin-bottom: 20px;
 }
 
@@ -16,15 +17,42 @@ main .title {
   margin-bottom: 5px;
 }
 .dialog_content textarea.drawing {
-  display: block;
   width: 95%;
   resize: none;
-  border: 1px solid #dcdfe6;
+  border: 1px solid #DCDFE6;
+  outline: none;
   border-radius: 5px;
   padding: 5px 15px;
-  color: #dcdfe6;
+  color: #606266;
   font-size: 14px;
-  outline: none;
+  transition: all 0.2s;
+}
+.dialog_content textarea.drawing::-webkit-input-placeholder {
+  color: #C0C4CC;
+}
+.dialog_content textarea.drawing:-ms-input-placeholder {
+  color: #C0C4CC;
+}
+.dialog_content textarea.drawing::-ms-input-placeholder {
+  color: #C0C4CC;
+}
+.dialog_content textarea.drawing::placeholder {
+  color: #C0C4CC;
+}
+.dialog_content textarea.drawing:hover {
+  border-color: #C0C4CC;
+}
+.dialog_content textarea.drawing:focus {
+  border-color: #490eff;
+}
+.dialog_content .drawing_show {
+  display: inherit;
+}
+.dialog_content .drawing_show img {
+  height: 100px;
+  border-radius: 5px;
+  margin-right: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .timeline-wrapper {

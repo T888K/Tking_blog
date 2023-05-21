@@ -134,6 +134,8 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -162,8 +164,9 @@ EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 EMAIL_PASSWORD = ['nwrbgippfpnidjhf']
 
+
 # 七牛云配置
 QINIU_ACCESS_KEY = 'YfLbt0nAi5pYt6JKxqp_n_8XFsray0UgwD-VpKCg'
 QINIU_SECRET_KEY = '09-Lx3TB4QvtDzAffL1O-PhYuRHgaCoTSlfmold0'
 QINIU_BUCKET_NAME = 'tkingblog'
-QINIU_DOMAIN = 'xxx.xxx.xxx'  # 访问的域名，按照这样的格式
+QINIU_DOMAIN = 'ruw6k9bw2.hn-bkt.clouddn.com'

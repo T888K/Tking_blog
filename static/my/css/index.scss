@@ -150,6 +150,25 @@
       .hot > .content {
         > div {
           display: flex;
+          margin-bottom: 8px;
+
+          &:nth-child(1) {
+            .index {
+              background-color: #f22d46;
+            }
+          }
+
+          &:nth-child(2) {
+            .index {
+              background-color: #ff6600;
+            }
+          }
+
+          &:nth-child(3) {
+            .index {
+              background-color: #faa90e;
+            }
+          }
 
           .index {
             width: 20px;
@@ -161,6 +180,7 @@
             justify-content: center;
             align-items: center;
             margin-right: 15px;
+
 
           }
 
@@ -424,7 +444,7 @@
             box-sizing: border-box;
 
             &:nth-child(6n+1), &:nth-child(6n+2), &:nth-child(6n+3) {
-              background-color: var(--bg);
+              background-color: #E2E2E2FF;
             }
 
             &:nth-child(3n+1), &:nth-child(3n+2) {

@@ -8,8 +8,13 @@ from app01.models import *
 # from app01.models import UserInfo  # 用户
 from django.utils.safestring import mark_safe
 
-
 # Register your models here.
+
+admin.site.register(Tags)
+admin.site.register(Cover)
+admin.site.register(Comment)
+admin.site.register(Avatars)
+
 
 # 文章
 class ArticleAdmin(admin.ModelAdmin):
@@ -64,11 +69,6 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Articles, ArticleAdmin)
-
-admin.site.register(Tags)
-admin.site.register(Cover)
-admin.site.register(Comment)
-admin.site.register(Avatars)
 
 
 # 用户信息
@@ -160,7 +160,8 @@ admin.site.register(MenuImg, MenuImgAdmin)
 
 class MenuAdmin(admin.ModelAdmin):
     def get_menu_url(self: Menu):
-        lis = [f"<img src='{i.url.url}' style='height:60px;border-radius:5px;margin-right:5px;margin-bottom:5px;'>" for i in
+        lis = [f"<img src='{i.url.url}' style='height:60px;border-radius:5px;margin-right:5px;margin-bottom:5px;'>" for
+               i in
                self.menu_url.all()]
         return mark_safe(''.join(lis))
 
@@ -173,3 +174,10 @@ class MenuAdmin(admin.ModelAdmin):
 
 # 站点背景
 admin.site.register(Menu, MenuAdmin)
+
+
+class NavsAdmin(admin.ModelAdmin):
+    list_display = ['title']
+
+
+admin.site.register(Navs, NavsAdmin)

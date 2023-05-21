@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from api.views import login, article, comment, mood, user, file, api_email
+from api.views import login, article, comment, mood, user, file, api_email, history, news, sites
 
 urlpatterns = [
     path('login/', login.LoginView.as_view()),  # 登录
@@ -29,5 +29,14 @@ urlpatterns = [
     path('paste_upload/', file.PasteUpload.as_view()),  # 粘贴上传
 
     path('send_email/', api_email.ApiEmail.as_view()),  # 发送邮件
+
+    path('history/', history.HistoryView.as_view()),  # 发送回忆
+    re_path(r'history/(?P<nid>\d+)/', history.HistoryView.as_view()),  # 编辑回忆
+
+    path('site_tag/', sites.NavTagsView.as_view()),  # 添加网站标签
+    re_path(r'site_tag/(?P<nid>\d+)/', sites.NavTagsView.as_view()),  # 编辑网站标签
+    path('sites/', sites.NavView.as_view()),  # 获取网站数据
+
+    path('news/', news.NewsView.as_view()),  # 新闻
 
 ]
